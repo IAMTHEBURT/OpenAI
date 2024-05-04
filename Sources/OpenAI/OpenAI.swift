@@ -267,7 +267,7 @@ extension OpenAI {
         var components = URLComponents()
         components.scheme = "https"
         components.host = configuration.host
-        components.path = path.replacingOccurrences(of: "THREAD_ID", with: threadId)
+        components.path = (configuration.basePath ?? "") + path.replacingOccurrences(of: "THREAD_ID", with: threadId)
         if let before {
             components.queryItems = [URLQueryItem(name: "before", value: before)]
         }
@@ -278,8 +278,9 @@ extension OpenAI {
         var components = URLComponents()
         components.scheme = "https"
         components.host = configuration.host
-        components.path = path.replacingOccurrences(of: "THREAD_ID", with: threadId)
-                              .replacingOccurrences(of: "RUN_ID", with: runId)
+        components.path = (configuration.basePath ?? "") + path
+                                               .replacingOccurrences(of: "THREAD_ID", with: threadId)
+                                               .replacingOccurrences(of: "RUN_ID", with: runId)
         if let before {
             components.queryItems = [URLQueryItem(name: "before", value: before)]
         }
@@ -290,7 +291,7 @@ extension OpenAI {
         var components = URLComponents()
         components.scheme = "https"
         components.host = configuration.host
-        components.path = path.replacingOccurrences(of: "ASST_ID", with: assistantId)
+        components.path = (configuration.basePath ?? "") + path.replacingOccurrences(of: "ASST_ID", with: assistantId)
 
         return components.url!
     }
