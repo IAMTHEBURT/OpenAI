@@ -257,7 +257,7 @@ extension OpenAI {
         var components = URLComponents()
         components.scheme = "https"
         components.host = configuration.host
-        components.path = self.configuration.basePath + path
+        components.path = (configuration.basePath ?? "") + path
         if let after {
             components.queryItems = [URLQueryItem(name: "after", value: after)]
         }
