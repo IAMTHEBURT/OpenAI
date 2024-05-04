@@ -26,11 +26,18 @@ final public class OpenAI: OpenAIProtocol {
         /// Default request timeout
         public let timeoutInterval: TimeInterval
         
-        public init(token: String, organizationIdentifier: String? = nil, host: String = "api.openai.com", timeoutInterval: TimeInterval = 60.0) {
-            self.token = token
-            self.organizationIdentifier = organizationIdentifier
-            self.host = host
-            self.timeoutInterval = timeoutInterval
+        public init(
+                   token: String,
+                   organizationIdentifier: String? = nil,
+                   host: String = "api.openai.com",
+                   basePath: String? = "",
+                   timeoutInterval: TimeInterval = 60.0
+        ) {
+                   self.token = token
+                   self.organizationIdentifier = organizationIdentifier
+                   self.host = host
+                   self.basePath = basePath ?? ""
+                   self.timeoutInterval = timeoutInterval
         }
     }
     
@@ -248,13 +255,12 @@ extension OpenAI {
         var components = URLComponents()
         components.scheme = "https"
         components.host = configuration.host
-        components.path = path
+        components.path = self.configuration.basePath + path
         if let after {
             components.queryItems = [URLQueryItem(name: "after", value: after)]
         }
         return components.url!
     }
-
     func buildRunsURL(path: String, threadId: String, before: String? = nil) -> URL {
         var components = URLComponents()
         components.scheme = "https"
