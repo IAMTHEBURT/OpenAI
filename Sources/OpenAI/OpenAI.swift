@@ -23,6 +23,8 @@ final public class OpenAI: OpenAIProtocol {
         /// API host. Set this property if you use some kind of proxy or your own server. Default is api.openai.com
         public let host: String
         
+        public let basePath: String?
+        
         /// Default request timeout
         public let timeoutInterval: TimeInterval
         
