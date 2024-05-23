@@ -11,7 +11,10 @@ public typealias Model = String
 public extension Model {
     // Chat Completion
     // GPT-4
-
+    
+    /// `gpt-4o`, currently the most advanced, multimodal flagship model that's cheaper and faster than GPT-4 Turbo.
+    static let gpt4_o = "gpt-4o"
+    
     /// `gpt-4-turbo`, the latest gpt-4 model with improved instruction following, JSON mode, reproducible outputs, parallel function calling and more. Maximum of 4096 output tokens
     static let gpt4_turbo_preview = "gpt-4-turbo-preview"
 
